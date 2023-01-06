@@ -1,0 +1,17 @@
+{
+  "name": "curso-de-api-rest-node-e-typescript",
+  "version": "1.0.0",
+  "description": "Curso de API Rest em Node e TypeScript",
+  "main": "index.js",
+  "author": "Rafiere",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "typescript": "^4.9.4",
+    "ts-node-dev": "^2.0.0"
+  }
+}
