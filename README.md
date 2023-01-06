@@ -1,4 +1,6 @@
-# Aula 02
+# Anotações do Curso
+
+## Aula 02
 
 As bibliotecas "@types/nome-da-biblioteca" é a adição da integração de uma biblioteca com o TypeScript, para que, dessa forma, ela possa fornecer tipagens e outros recursos específicos do TypeScript para essa biblioteca.
 
