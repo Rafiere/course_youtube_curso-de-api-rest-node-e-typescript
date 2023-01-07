@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 
 import * as yup from "yup";
@@ -15,8 +15,14 @@ const bodyValidation: yup.SchemaOf<ICidade> = yup.object().shape({
   estado: yup.string().required().min(3),
 });
 
-/* O "Request" aceita um parâmetro de tipagem, assim, estamos passando para o parâmetro "ReqBody", que é o terceiro parâmetro, a interface "ICidade", que vai tipar a forma que o corpo dessa requisição deverá estar. */
-export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
+/* Um middleware é uma função que será executada antes que os dados cheguem na rota. Um "RequestHandler" é uma função que retorna "void", e ela tem a tipagem para "req", "res" e "next", sem precisarmos especificar a tipagem dele. */
+
+/* Basicamente, um Middleware é um handler de requests. */
+
+/* O "Next" diz para o Express executar o próximo Handler da fila de Handlers. */
+
+/* Antes de realizarmos qualquer chamada, basicamente, verificaremos se o corpo da chamada está batendo com o Schema de validação. */
+export const createBodyValidator: RequestHandler = async (req, res, next) => {
   try {
     /* Abaixo, teremos os dados validados. Se acontecer algum erro na validação, será retornado uma Exception de validação. */
 
@@ -24,6 +30,9 @@ export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
     const validatedData = await bodyValidation.validate(req.body, {
       abortEarly: false,
     });
+
+    /* Se a validação passar, a próxima chamada será executada, que é o "next()". */
+    return next();
   } catch (err) {
     /* O "yupError.inner" é uma lista dos erros que aconteceram na validação do Yup. */
     const yupError = err as yup.ValidationError;
@@ -44,6 +53,12 @@ export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
       errors: validationErrors,
     });
   }
+};
+
+/* O "Request" aceita um parâmetro de tipagem, assim, estamos passando para o parâmetro "ReqBody", que é o terceiro parâmetro, a interface "ICidade", que vai tipar a forma que o corpo dessa requisição deverá estar. */
+export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
+  /* Esse método só será chamado se a validação dos dados for feita com sucesso pelo Yup. */
+  console.log(req.body);
 
   res.send("Created!");
 };
