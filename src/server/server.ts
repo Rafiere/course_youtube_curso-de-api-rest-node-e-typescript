@@ -3,6 +3,8 @@ import express from "express";
 /* Podemos importar diretamente de "routes" pois, quando temos um arquivo chamado "index", o Node já interpreta que estamos chamando o arquivo "index.ts". */
 import { router } from "./routes";
 
+import "dotenv/config";
+
 /* Esse arquivo terá o código básico do servidor Express. */
 
 /* Estamos criando uma instância do Express. */
