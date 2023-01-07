@@ -15,3 +15,7 @@ O navegador só consegue realizar as chamadas do tipo "GET" através da barra de
 Podemos usar o Insomnia ou o Postman para testar as requisições de API.
 
 É muito raro encontrarmos um método "GET" que possui dados no corpo da requisição, mas isso é possível de ser feito.
+
+## Aula 05
+
+A biblioteca "http-status-codes" adiciona status em forma de constantes, para que consigamos encontrar o retorno desejado com uma maior facilidade.
