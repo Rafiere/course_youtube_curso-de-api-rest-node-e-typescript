@@ -11,7 +11,11 @@ router.get("/", (req, res) => {
   res.status(StatusCodes.ACCEPTED).json(req.body);
 });
 
-router.post("/cidades", CidadesController.create);
+router.post(
+  "/cidades",
+  CidadesController.createBodyValidator,
+  CidadesController.create
+);
 
 /* Estamos exportando para utilizar as rotas dentro do arquivo de servidor. */
 export { router };
