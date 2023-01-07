@@ -1,5 +1,8 @@
 import express from "express";
 
+/* Todas as mensagens de erro do Yup estarão traduzidas. Esse import deverá ficar antes da configuração das rotas para que ele funcione corretamente. */
+import "./shared/services/TraducoesYup";
+
 /* Podemos importar diretamente de "routes" pois, quando temos um arquivo chamado "index", o Node já interpreta que estamos chamando o arquivo "index.ts". */
 import { router } from "./routes";
 
